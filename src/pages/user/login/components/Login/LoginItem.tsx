@@ -1,7 +1,13 @@
 import { Button, Col, Form, Input, Row } from 'antd';
 import React, { Component } from 'react';
+<<<<<<< HEAD
 
 import { FormComponentProps } from 'antd/es/form';
+=======
+import { FormComponentProps } from 'antd/es/form';
+import { GetFieldDecoratorOptions } from 'antd/es/form/Form';
+
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
 import omit from 'omit.js';
 import ItemMap from './map';
 import LoginContext, { LoginContextProps } from './LoginContext';
@@ -18,6 +24,7 @@ export interface LoginItemType {
   Captcha: React.FC<WrappedLoginItemProps>;
 }
 
+<<<<<<< HEAD
 export interface LoginItemProps {
   name?: string;
   rules?: any[];
@@ -26,6 +33,15 @@ export interface LoginItemProps {
   placeholder?: string;
   buttonText?: React.ReactNode;
   onPressEnter?: (e: any) => void;
+=======
+export interface LoginItemProps extends GetFieldDecoratorOptions {
+  name?: string;
+  style?: React.CSSProperties;
+  onGetCaptcha?: (event?: MouseEvent) => void | Promise<boolean> | false;
+  placeholder?: string;
+  buttonText?: React.ReactNode;
+  onPressEnter?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
   countDown?: number;
   getCaptchaButtonText?: string;
   getCaptchaSecondText?: string;
@@ -33,9 +49,15 @@ export interface LoginItemProps {
   type?: string;
   defaultValue?: string;
   form?: FormComponentProps['form'];
+<<<<<<< HEAD
   customProps?: { [key: string]: any };
   onChange?: (e: any) => void;
   tabUtil?: any;
+=======
+  customProps?: { [key: string]: unknown };
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  tabUtil?: LoginContextProps['tabUtil'];
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
 }
 
 interface LoginItemState {
@@ -85,11 +107,19 @@ class WrapFormItem extends Component<LoginItemProps, LoginItemState> {
 
   getFormItemOptions = ({ onChange, defaultValue, customProps = {}, rules }: LoginItemProps) => {
     const options: {
+<<<<<<< HEAD
       rules?: any[];
       onChange?: LoginItemProps['onChange'];
       initialValue?: LoginItemProps['defaultValue'];
     } = {
       rules: rules || customProps.rules,
+=======
+      rules?: LoginItemProps['rules'];
+      onChange?: LoginItemProps['onChange'];
+      initialValue?: LoginItemProps['defaultValue'];
+    } = {
+      rules: rules || (customProps.rules as LoginItemProps['rules']),
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
     };
     if (onChange) {
       options.onChange = onChange;

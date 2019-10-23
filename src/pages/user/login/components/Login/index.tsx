@@ -3,26 +3,45 @@ import React, { Component } from 'react';
 import { FormComponentProps } from 'antd/es/form';
 import classNames from 'classnames';
 import LoginContext, { LoginContextProps } from './LoginContext';
+<<<<<<< HEAD
 import LoginItem, { LoginItemProps } from './LoginItem';
+=======
+import LoginItem, { LoginItemProps, LoginItemType } from './LoginItem';
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
 
 import LoginSubmit from './LoginSubmit';
 import LoginTab from './LoginTab';
 import styles from './index.less';
+<<<<<<< HEAD
+=======
+import { LoginParamsType } from '@/services/login';
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
 
 export interface LoginProps {
   defaultActiveKey?: string;
   onTabChange?: (key: string) => void;
   style?: React.CSSProperties;
+<<<<<<< HEAD
   onSubmit?: (error: any, values: any) => void;
   className?: string;
   form: FormComponentProps['form'];
+=======
+  onSubmit?: (error: unknown, values: LoginParamsType) => void;
+  className?: string;
+  form: FormComponentProps['form'];
+  onCreate?: (form?: FormComponentProps['form']) => void;
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
   children: React.ReactElement<LoginTab>[];
 }
 
 interface LoginState {
   tabs?: string[];
   type?: string;
+<<<<<<< HEAD
   active?: { [key: string]: any[] };
+=======
+  active?: { [key: string]: unknown[] };
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
 }
 
 class Login extends Component<LoginProps, LoginState> {
@@ -54,6 +73,16 @@ class Login extends Component<LoginProps, LoginState> {
     };
   }
 
+<<<<<<< HEAD
+=======
+  componentDidMount() {
+    const { form, onCreate } = this.props;
+    if (onCreate) {
+      onCreate(form);
+    }
+  }
+
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
   onSwitch = (type: string) => {
     this.setState(
       {
@@ -105,7 +134,11 @@ class Login extends Component<LoginProps, LoginState> {
     const { form, onSubmit } = this.props;
     const activeFields = active[type] || [];
     if (form) {
+<<<<<<< HEAD
       form.validateFields(activeFields, { force: true }, (err, values) => {
+=======
+      form.validateFields(activeFields as string[], { force: true }, (err, values) => {
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
         if (onSubmit) {
           onSubmit(err, values);
         }
@@ -117,15 +150,26 @@ class Login extends Component<LoginProps, LoginState> {
     const { className, children } = this.props;
     const { type, tabs = [] } = this.state;
     const TabChildren: React.ReactComponentElement<LoginTab>[] = [];
+<<<<<<< HEAD
     const otherChildren: React.ReactElement<any>[] = [];
     React.Children.forEach(
       children,
       (child: React.ReactComponentElement<LoginTab> | React.ReactElement<any>) => {
+=======
+    const otherChildren: React.ReactElement<unknown>[] = [];
+    React.Children.forEach(
+      children,
+      (child: React.ReactComponentElement<LoginTab> | React.ReactElement<unknown>) => {
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
         if (!child) {
           return;
         }
         if (child.type.typeName === 'LoginTab') {
+<<<<<<< HEAD
           TabChildren.push(child);
+=======
+          TabChildren.push(child as React.ReactComponentElement<LoginTab>);
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
         } else {
           otherChildren.push(child);
         }

@@ -3,9 +3,16 @@ import defaultSettings from './defaultSettings'; // https://umijs.org/config/
 
 import slash from 'slash2';
 import webpackPlugin from './plugin.config';
+<<<<<<< HEAD
 const { pwa, primaryColor } = defaultSettings; // preview.pro.ant.design only do not use in your production ;
 // preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
 
+=======
+const { pwa, primaryColor } = defaultSettings;
+
+// preview.pro.ant.design only do not use in your production ;
+// preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
 const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION } = process.env;
 const isAntDesignProPreview = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site';
 const plugins: IPlugin[] = [
@@ -24,11 +31,11 @@ const plugins: IPlugin[] = [
         // default true, when it is true, will use `navigator.language` overwrite default
         baseNavigator: true,
       },
-      dynamicImport: {
-        loadingComponent: './components/PageLoading/index',
-        webpackChunkName: true,
-        level: 3,
-      },
+      // dynamicImport: {
+      //   loadingComponent: './components/PageLoading/index',
+      //   webpackChunkName: true,
+      //   level: 3,
+      // },
       pwa: pwa
         ? {
             workboxPluginMode: 'InjectManifest',
@@ -65,7 +72,7 @@ if (isAntDesignProPreview) {
   plugins.push([
     'umi-plugin-pro',
     {
-      serverUrl: 'https://ant-design-pro.netlify.com',
+      serverUrl: 'https://us-central1-antd-pro.cloudfunctions.net/api',
     },
   ]);
 }
@@ -73,6 +80,8 @@ if (isAntDesignProPreview) {
 export default {
   plugins,
   block: {
+    // 国内用户可以使用码云
+    // defaultGitUrl: 'https://gitee.com/ant-design/pro-blocks',
     defaultGitUrl: 'https://github.com/ant-design/pro-blocks',
   },
   hash: true,
@@ -83,7 +92,19 @@ export default {
   // umi routes: https://umijs.org/zh/guide/router.html
   routes: [
     {
+      path: '/user',
+      component: '../layouts/UserLayout',
+      routes: [
+        {
+          name: 'login',
+          path: '/user/login',
+          component: './user/login',
+        },
+      ],
+    },
+    {
       path: '/',
+<<<<<<< HEAD
       component: '../layouts/BlankLayout',
       routes: [
         {
@@ -111,6 +132,27 @@ export default {
             },
             {
               component: '404',
+=======
+      component: '../layouts/SecurityLayout',
+      routes: [
+        {
+          path: '/',
+          component: '../layouts/BasicLayout',
+          authority: ['admin', 'user'],
+          routes: [
+            {
+              path: '/',
+              redirect: '/welcome',
+            },
+            {
+              path: '/welcome',
+              name: 'welcome',
+              icon: 'smile',
+              component: './Welcome',
+            },
+            {
+              component: './404',
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
             },
           ],
         },
@@ -319,6 +361,13 @@ export default {
         },
       ],
     },
+<<<<<<< HEAD
+=======
+
+    {
+      component: './404',
+    },
+>>>>>>> 16b969fe7577fca56f9ffaeaae5861cd7c2b8c58
   ],
   // Theme for antd: https://ant.design/docs/react/customize-theme-cn
   theme: {
