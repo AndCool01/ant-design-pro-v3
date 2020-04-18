@@ -4,7 +4,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'npm --version'
+                sh 'echo "hello jenkins"'
+		sh '''
+		    echo "Multiline shell steps works too"
+		'''
             }
         }
     }
