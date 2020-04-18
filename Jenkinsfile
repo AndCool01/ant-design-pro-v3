@@ -5,9 +5,9 @@ pipeline {
         stage('build') {
             steps {
                 sh 'echo "hello jenkins"'
-		sh '''
-		    echo "Multiline shell steps works too"
-		'''
+                sh '''
+                    echo "Multiline shell steps works too"
+                '''
             }
         }
     }
